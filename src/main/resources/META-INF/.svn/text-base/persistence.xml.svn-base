@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence version="2.0"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd
+	http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:orm="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	
+	<persistence-unit name="bpm-pu">
+		<class>com.tradelink.scm.bpm.model.Attachment</class>
+		<class>com.tradelink.scm.bpm.model.BpmActHiVarinst</class>
+		<class>com.tradelink.scm.bpm.model.BpmActRuVariable</class>
+		<class>com.tradelink.scm.bpm.model.InitiatorInfo</class>
+		<class>com.tradelink.scm.bpm.model.ListTaskVariable</class>
+		<class>com.tradelink.scm.bpm.model.ProcdefLookup</class>
+		<class>com.tradelink.scm.bpm.model.ProcEmailType</class>
+		<class>com.tradelink.scm.bpm.model.ProcHistory</class>
+		<class>com.tradelink.scm.bpm.model.TaskComment</class>
+		<class>com.tradelink.scm.bpm.model.TrackerInfo</class>
+		<class>com.tradelink.scm.bpm.model.UserDelegate</class>
+	</persistence-unit>
+</persistence>
