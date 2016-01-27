@@ -5,17 +5,16 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 
 @Entity
 @Table(name = "device_portfolio", catalog = "sb")
-@IdClass(DevicePortfolioId.class)
 public class DevicePortfolio implements java.io.Serializable
 {
 	private static final long serialVersionUID = 1L;
 
+	private Long id;
 	private String deviceId;
 	private long portfolioId;
 	private String name;
@@ -40,6 +39,15 @@ public class DevicePortfolio implements java.io.Serializable
 	}
 
 	@Id
+	@Column(name = "id")
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	@Column(name = "device_id", nullable = false, length = 50)
 	public String getDeviceId() {
 		return this.deviceId;
@@ -49,7 +57,6 @@ public class DevicePortfolio implements java.io.Serializable
 		this.deviceId = deviceId;
 	}
 
-	@Id
 	@Column(name = "portfolio_id")
 	public long getPortfolioId() {
 		return this.portfolioId;

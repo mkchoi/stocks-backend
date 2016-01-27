@@ -3,17 +3,16 @@ package com.kanchoi.webapp.stocks.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 
 @Entity
 @Table(name = "device_cost", catalog = "sb")
-@IdClass(DeviceCostId.class)
 public class DeviceCost implements java.io.Serializable
 {
 	private static final long serialVersionUID = 1L;
 
+	private Long id;
 	private String deviceId;
 	private long costId;
 	private double tranCost;
@@ -40,6 +39,15 @@ public class DeviceCost implements java.io.Serializable
 	}
 
 	@Id
+	@Column(name = "id")
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	@Column(name = "device_id", nullable = false, length = 50)
 	public String getDeviceId() {
 		return this.deviceId;
@@ -49,7 +57,6 @@ public class DeviceCost implements java.io.Serializable
 		this.deviceId = deviceId;
 	}
 
-	@Id
 	@Column(name = "cost_id")
 	public long getCostId() {
 		return this.costId;
