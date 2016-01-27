@@ -19,24 +19,5 @@ public class AuthoritiesServiceImpl implements AuthoritiesService {
 	@Qualifier("authoritiesDao")
 	private AuthoritiesDao authoritiesDao;
 
-
-	public boolean createAuthority(Authorities authority) {
-		return authoritiesDao.create(authority);
-	}
-	
-	
-	public boolean updateAuthority(Authorities authority) {
-		return authoritiesDao.update(authority);
-	}
-	
-	
-	public boolean deleteAuthority(String username) {
-		return authoritiesDao.delete(username);	
-	}
-	
-	
-	public List<Authorities> getAuthorities(String username) {
-		return authoritiesDao.get(username);
-	}
 	
 }

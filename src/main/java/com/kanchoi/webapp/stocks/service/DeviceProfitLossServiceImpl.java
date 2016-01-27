@@ -18,23 +18,5 @@ public class DeviceProfitLossServiceImpl implements DeviceProfitLossService {
 	private DeviceProfitLossDao deviceProfitLossDao;
 
 
-	public boolean createProfitLoss(DeviceProfitLoss profitLoss) {
-		return deviceProfitLossDao.create(profitLoss);
-	}
-	
-	
-	public boolean updateProfitLoss(DeviceProfitLoss profitLoss) {
-		return deviceProfitLossDao.update(profitLoss);
-	}
-	
-	
-	public boolean deleteProfitLoss(String deviceId, long profitLossId) {
-		return deviceProfitLossDao.delete(deviceId, profitLossId);	
-	}
-	
-	
-	public DeviceProfitLoss getProfitLoss(String deviceId, long profitLossId) {
-		return deviceProfitLossDao.get(deviceId, profitLossId);
-	}
-	
+
 }

@@ -15,17 +15,17 @@ public class ForumMessage implements java.io.Serializable
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
-	private long topicId;
+	private Long topicId;
 	private String message;
 	private String userEmail;
 	private Date createTime;
 	private String deviceId;
-	private long messageId;
+	private Long messageId;
 
 	public ForumMessage() {
 	}
 
-	public ForumMessage(long id, long topicId, String message, String userEmail, Date createTime, String deviceId, long messageId) {
+	public ForumMessage(Long id, Long topicId, String message, String userEmail, Date createTime, String deviceId, Long messageId) {
 		this.id = id;
 		this.topicId = topicId;
 		this.message = message;
@@ -47,11 +47,11 @@ public class ForumMessage implements java.io.Serializable
 	}
 
 	@Column(name = "topic_id")
-	public long getTopicId() {
+	public Long getTopicId() {
 		return topicId;
 	}
 
-	public void setTopicId(long topicId) {
+	public void setTopicId(Long topicId) {
 		this.topicId = topicId;
 	}
 	
@@ -92,11 +92,11 @@ public class ForumMessage implements java.io.Serializable
 	}
 
 	@Column(name = "message_id")
-	public long getMessageId() {
+	public Long getMessageId() {
 		return messageId;
 	}
 
-	public void setMessageId(long messageId) {
+	public void setMessageId(Long messageId) {
 		this.messageId = messageId;
 	}
 	

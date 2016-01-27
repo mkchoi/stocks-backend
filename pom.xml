@@ -219,9 +219,7 @@
 		<dependency>
 			<groupId>com.sun.xml.ws</groupId>
 			<artifactId>jaxws-rt</artifactId>
-			<version>2.1.7</version>
-			<type>jar</type>
-			<scope>compile</scope>
+			<version>2.2.7</version>
 			<exclusions>
 				<exclusion>
 					<artifactId>jaxb-impl</artifactId>
@@ -358,18 +356,9 @@
 		<dependency>
 			<groupId>com.sun.xml.ws</groupId>
 			<artifactId>jaxws-tools</artifactId>
-			<version>2.1.7</version>
-			<type>jar</type>
-			<scope>compile</scope>
+			<version>2.2.7</version>
 		</dependency>
 
-		<dependency>
-			<groupId>taglibs</groupId>
-			<artifactId>standard</artifactId>
-			<version>1.1.2</version>
-			<type>jar</type>
-			<scope>compile</scope>
-		</dependency>
 
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
@@ -419,17 +408,12 @@
 			<scope>compile</scope>
 		</dependency>
      
-     	<dependency>
-        	<groupId>org.springframework.data</groupId>
-        	<artifactId>spring-data-mongodb</artifactId>
-        	<version>1.8.1.RELEASE</version>
-    	</dependency>
+
 		<dependency>
-			<groupId>org.mongodb</groupId>
-			<artifactId>mongo-java-driver</artifactId>
-			<version>3.2.0</version>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>1.9.0.RELEASE</version>
 		</dependency>
-     
 	</dependencies>
 
 

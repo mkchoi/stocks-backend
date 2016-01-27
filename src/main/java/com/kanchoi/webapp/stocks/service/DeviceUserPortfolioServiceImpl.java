@@ -18,23 +18,5 @@ public class DeviceUserPortfolioServiceImpl implements DeviceUserPortfolioServic
 	private DeviceUserPortfolioDao deviceUserPortfolioDao;
 
 
-	public boolean createUserPortfolio(DeviceUserPortfolio userPortfolio) {
-		return deviceUserPortfolioDao.create(userPortfolio);
-	}
-	
-	
-	public boolean updateUserPortfolio(DeviceUserPortfolio userPortfolio) {
-		return deviceUserPortfolioDao.update(userPortfolio);
-	}
-	
-	
-	public boolean deleteUserPortfolio(String deviceId, long userPortfolioId) {
-		return deviceUserPortfolioDao.delete(deviceId, userPortfolioId);	
-	}
-	
-	
-	public DeviceUserPortfolio getUserPortfolio(String deviceId, long userPortfolioId) {
-		return deviceUserPortfolioDao.get(deviceId, userPortfolioId);
-	}
 	
 }

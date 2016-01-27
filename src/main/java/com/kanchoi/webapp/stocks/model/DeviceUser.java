@@ -5,19 +5,18 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 
 @Entity
 @Table(name = "device_user", catalog = "sb")
-@IdClass(DeviceUserId.class)
 public class DeviceUser implements java.io.Serializable
 {
 	private static final long serialVersionUID = 1L;
 
+	private Long id;
 	private String deviceId;
-	private long userId;
+	private Long userId;
 	private String name;
 	private byte[] photo;
 	private String type;
@@ -30,12 +29,12 @@ public class DeviceUser implements java.io.Serializable
 	public DeviceUser() {
 	}
 
-	public DeviceUser(String deviceId, long userId) {
+	public DeviceUser(String deviceId, Long userId) {
 		this.deviceId = deviceId;
 		this.userId = userId;
 	}
 
-	public DeviceUser(String deviceId, long userId, String name, byte[] photo, String type, String share, 
+	public DeviceUser(String deviceId, Long userId, String name, byte[] photo, String type, String share, 
 			String addTradingFee, String greenAsRise, Date createTime) {
 		this.deviceId = deviceId;
 		this.userId = userId;
@@ -49,6 +48,15 @@ public class DeviceUser implements java.io.Serializable
 	}
 
 	@Id
+	@Column(name = "id")
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	@Column(name = "device_id", nullable = false, length = 50)
 	public String getDeviceId() {
 		return this.deviceId;
@@ -58,13 +66,12 @@ public class DeviceUser implements java.io.Serializable
 		this.deviceId = deviceId;
 	}
 
-	@Id
 	@Column(name = "user_id")
-	public long getUserId() {
+	public Long getUserId() {
 		return this.userId;
 	}
 
-	public void setUserId(long userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 

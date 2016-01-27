@@ -17,24 +17,5 @@ public class ForumTopicServiceImpl implements ForumTopicService {
 	@Qualifier("forumTopicDao")
 	private ForumTopicDao forumTopicDao;
 
-
-	public boolean createForumTopic(ForumTopic forumTopic) {
-		return forumTopicDao.create(forumTopic);
-	}
-	
-	
-	public boolean updateForumTopic(ForumTopic forumTopic) {
-		return forumTopicDao.update(forumTopic);
-	}
-	
-	
-	public boolean deleteForumTopic(long id) {
-		return forumTopicDao.delete(id);	
-	}
-	
-	
-	public ForumTopic getForumTopic(long id) {
-		return forumTopicDao.get(id);
-	}
 	
 }

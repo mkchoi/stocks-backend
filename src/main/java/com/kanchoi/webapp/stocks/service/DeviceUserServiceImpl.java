@@ -17,24 +17,5 @@ public class DeviceUserServiceImpl implements DeviceUserService {
 	@Qualifier("deviceUserDao")
 	private DeviceUserDao deviceUserDao;
 
-
-	public boolean createUser(DeviceUser user) {
-		return deviceUserDao.create(user);
-	}
-	
-	
-	public boolean updateUser(DeviceUser user) {
-		return deviceUserDao.update(user);
-	}
-	
-	
-	public boolean deleteUser(String deviceId, long userId) {
-		return deviceUserDao.delete(deviceId, userId);	
-	}
-	
-	
-	public DeviceUser getUser(String deviceId, long userId) {
-		return deviceUserDao.get(deviceId, userId);
-	}
 	
 }

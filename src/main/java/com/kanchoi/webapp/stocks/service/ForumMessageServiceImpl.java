@@ -18,23 +18,4 @@ public class ForumMessageServiceImpl implements ForumMessageService {
 	private ForumMessageDao forumMessageDao;
 
 
-	public boolean createForumMessage(ForumMessage forumMessage) {
-		return forumMessageDao.create(forumMessage);
-	}
-	
-	
-	public boolean updateForumMessage(ForumMessage forumMessage) {
-		return forumMessageDao.update(forumMessage);
-	}
-	
-	
-	public boolean deleteForumMessage(long id) {
-		return forumMessageDao.delete(id);	
-	}
-	
-	
-	public ForumMessage getForumMessage(long id) {
-		return forumMessageDao.get(id);
-	}
-	
 }

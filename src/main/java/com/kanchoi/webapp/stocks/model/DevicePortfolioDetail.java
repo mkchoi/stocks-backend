@@ -5,41 +5,40 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 
 @Entity
 @Table(name = "device_portfolio_detail", catalog = "sb")
-@IdClass(DevicePortfolioDetailId.class)
 public class DevicePortfolioDetail implements java.io.Serializable
 {
 	private static final long serialVersionUID = 1L;
 
+	private Long id;
 	private String deviceId;
-	private long portfolioDetailId;
-	private long sequence;
+	private Long portfolioDetailId;
+	private Long sequence;
 	private String stockSym;
 	private String stockName;
 	private String marketCode;
 	private String action;
-	private double actionPrice;
-	private long actionQty;
+	private Double actionPrice;
+	private Long actionQty;
 	private Date actionTime;
-	private double tradingFee;
-	private long portfolioId;
+	private Double tradingFee;
+	private Long portfolioId;
 
 	public DevicePortfolioDetail() {
 	}
 
-	public DevicePortfolioDetail(String deviceId, long portfolioDetailId) {
+	public DevicePortfolioDetail(String deviceId, Long portfolioDetailId) {
 		this.deviceId = deviceId;
 		this.portfolioDetailId = portfolioDetailId;
 	}
 
-	public DevicePortfolioDetail(String deviceId, long portfolioDetailId, long sequence, String stockSym, String stockName, 
-			String marketCode, String action, double actionPrice, long actionQty, Date actionTime, double tradingFee, 
-			long portfolioId) {
+	public DevicePortfolioDetail(String deviceId, Long portfolioDetailId, Long sequence, String stockSym, String stockName, 
+			String marketCode, String action, Double actionPrice, Long actionQty, Date actionTime, Double tradingFee, 
+			Long portfolioId) {
 		this.deviceId = deviceId;
 		this.portfolioDetailId = portfolioDetailId;
 		this.sequence = sequence;
@@ -56,6 +55,15 @@ public class DevicePortfolioDetail implements java.io.Serializable
 	}
 
 	@Id
+	@Column(name = "id")
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	@Column(name = "device_id", nullable = false, length = 50)
 	public String getDeviceId() {
 		return this.deviceId;
@@ -65,22 +73,21 @@ public class DevicePortfolioDetail implements java.io.Serializable
 		this.deviceId = deviceId;
 	}
 
-	@Id
 	@Column(name = "portfolio_detail_id")
-	public long getPortfolioDetailId() {
+	public Long getPortfolioDetailId() {
 		return this.portfolioDetailId;
 	}
 
-	public void setPortfolioDetailId(long portfolioDetailId) {
+	public void setPortfolioDetailId(Long portfolioDetailId) {
 		this.portfolioDetailId = portfolioDetailId;
 	}
 
 	@Column(name = "sequence")
-	public long getSequence() {
+	public Long getSequence() {
 		return sequence;
 	}
 
-	public void setSequence(long sequence) {
+	public void setSequence(Long sequence) {
 		this.sequence = sequence;
 	}
 
@@ -121,20 +128,20 @@ public class DevicePortfolioDetail implements java.io.Serializable
 	}
 
 	@Column(name = "action_price")
-	public double getActionPrice() {
+	public Double getActionPrice() {
 		return actionPrice;
 	}
 
-	public void setActionPrice(double actionPrice) {
+	public void setActionPrice(Double actionPrice) {
 		this.actionPrice = actionPrice;
 	}
 
 	@Column(name = "action_qty")
-	public long getActionQty() {
+	public Long getActionQty() {
 		return actionQty;
 	}
 
-	public void setActionQty(long actionQty) {
+	public void setActionQty(Long actionQty) {
 		this.actionQty = actionQty;
 	}
 
@@ -148,20 +155,20 @@ public class DevicePortfolioDetail implements java.io.Serializable
 	}
 
 	@Column(name = "trading_fee")
-	public double getTradingFee() {
+	public Double getTradingFee() {
 		return tradingFee;
 	}
 
-	public void setTradingFee(double tradingFee) {
+	public void setTradingFee(Double tradingFee) {
 		this.tradingFee = tradingFee;
 	}
 
 	@Column(name = "portfolio_id")
-	public long getPortfolioId() {
+	public Long getPortfolioId() {
 		return portfolioId;
 	}
 
-	public void setPortfolioId(long portfolioId) {
+	public void setPortfolioId(Long portfolioId) {
 		this.portfolioId = portfolioId;
 	}
 	

@@ -3,19 +3,18 @@ package com.kanchoi.webapp.stocks.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 
 @Entity
 @Table(name = "device_stock_exchange", catalog = "sb")
-@IdClass(DeviceStockExchangeId.class)
 public class DeviceStockExchange implements java.io.Serializable
 {
 	private static final long serialVersionUID = 1L;
 
+	private Long id;
 	private String deviceId;
-	private long stockExchangeId;
+	private Long stockExchangeId;
 	private String market;
 	private String area;
 	private String code;
@@ -23,12 +22,12 @@ public class DeviceStockExchange implements java.io.Serializable
 	public DeviceStockExchange() {
 	}
 
-	public DeviceStockExchange(String deviceId, long stockExchangeId) {
+	public DeviceStockExchange(String deviceId, Long stockExchangeId) {
 		this.deviceId = deviceId;
 		this.setStockExchangeId(stockExchangeId);
 	}
 
-	public DeviceStockExchange(String deviceId, long stockExchangeId, String market, String area, String code) {
+	public DeviceStockExchange(String deviceId, Long stockExchangeId, String market, String area, String code) {
 		this.deviceId = deviceId;
 		this.stockExchangeId = stockExchangeId;
 		this.market = market;
@@ -37,6 +36,15 @@ public class DeviceStockExchange implements java.io.Serializable
 	}
 
 	@Id
+	@Column(name = "id")
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	@Column(name = "device_id", nullable = false, length = 50)
 	public String getDeviceId() {
 		return this.deviceId;
@@ -46,13 +54,12 @@ public class DeviceStockExchange implements java.io.Serializable
 		this.deviceId = deviceId;
 	}
 
-	@Id
 	@Column(name = "stock_exchange_id")
-	public long getStockExchangeId() {
+	public Long getStockExchangeId() {
 		return stockExchangeId;
 	}
 
-	public void setStockExchangeId(long stockExchangeId) {
+	public void setStockExchangeId(Long stockExchangeId) {
 		this.stockExchangeId = stockExchangeId;
 	}
 

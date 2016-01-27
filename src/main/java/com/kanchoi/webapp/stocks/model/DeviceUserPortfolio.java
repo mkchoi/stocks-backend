@@ -11,26 +11,26 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "device_user_portfolio", catalog = "sb")
-@IdClass(DeviceUserPortfolioId.class)
 public class DeviceUserPortfolio implements java.io.Serializable
 {
 	private static final long serialVersionUID = 1L;
 
+	private Long id;
 	private String deviceId;
-	private long userPortfolioId;
-	private long userId;
-	private long portfolioId;
+	private Long userPortfolioId;
+	private Long userId;
+	private Long portfolioId;
 	private Date createTime;
 
 	public DeviceUserPortfolio() {
 	}
 
-	public DeviceUserPortfolio(String deviceId, long userPortfolioId) {
+	public DeviceUserPortfolio(String deviceId, Long userPortfolioId) {
 		this.deviceId = deviceId;
 		this.userPortfolioId = userPortfolioId;
 	}
 
-	public DeviceUserPortfolio(String deviceId, long userPortfolioId, long userId, long portfolioId, Date createTime) {
+	public DeviceUserPortfolio(String deviceId, Long userPortfolioId, Long userId, Long portfolioId, Date createTime) {
 		this.deviceId = deviceId;
 		this.userPortfolioId = userPortfolioId;
 		this.userId = userId;
@@ -39,6 +39,15 @@ public class DeviceUserPortfolio implements java.io.Serializable
 	}
 
 	@Id
+	@Column(name = "id")
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	@Column(name = "device_id", nullable = false, length = 50)
 	public String getDeviceId() {
 		return this.deviceId;
@@ -48,31 +57,30 @@ public class DeviceUserPortfolio implements java.io.Serializable
 		this.deviceId = deviceId;
 	}
 
-	@Id
 	@Column(name = "user_portfolio_id")
-	public long getUserPortfolioId() {
+	public Long getUserPortfolioId() {
 		return userPortfolioId;
 	}
 
-	public void setUserPortfolioId(long userPortfolioId) {
+	public void setUserPortfolioId(Long userPortfolioId) {
 		this.userPortfolioId = userPortfolioId;
 	}
 
 	@Column(name = "user_id")
-	public long getUserId() {
+	public Long getUserId() {
 		return this.userId;
 	}
 
-	public void setUserId(long userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
 	@Column(name = "portfolio_id")
-	public long getPortfolioId() {
+	public Long getPortfolioId() {
 		return portfolioId;
 	}
 
-	public void setPortfolioId(long portfolioId) {
+	public void setPortfolioId(Long portfolioId) {
 		this.portfolioId = portfolioId;
 	}
 

@@ -19,12 +19,12 @@ public class ForumTopic implements java.io.Serializable
 	private String userEmail;
 	private Date createTime;
 	private String deviceId;
-	private long topicId;
+	private Long topicId;
 
 	public ForumTopic() {
 	}
 
-	public ForumTopic(long id, String topicName, String userEmail, Date createTime, String deviceId, long topicId) {
+	public ForumTopic(Long id, String topicName, String userEmail, Date createTime, String deviceId, Long topicId) {
 		this.id = id;
 		this.topicName = topicName;
 		this.userEmail = userEmail;
@@ -81,11 +81,11 @@ public class ForumTopic implements java.io.Serializable
 	}
 
 	@Column(name = "topic_id")
-	public long getTopicId() {
+	public Long getTopicId() {
 		return topicId;
 	}
 
-	public void setTopicId(long topicId) {
+	public void setTopicId(Long topicId) {
 		this.topicId = topicId;
 	}
 	

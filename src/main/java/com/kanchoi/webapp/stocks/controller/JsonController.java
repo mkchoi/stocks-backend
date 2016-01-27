@@ -90,12 +90,6 @@ public class JsonController {
 	public Map getCost(String deviceId, String costId, String serviceTicket,
 			Map<String, Object> models, Locale locale) {
 		
-		DeviceCost dc = deviceCostService.getCost(deviceId, Long.parseLong(costId));
-		if (dc == null) {
-			models.put("result", "ok");
-		} else {
-			models.put("result", dc);
-		}
 		
 		return models;
 	}
@@ -116,22 +110,7 @@ public class JsonController {
 			deviceCost.setCommission(Double.parseDouble(commission));
 			deviceCost.setMinChar(Double.parseDouble(minChar));
 			
-			DeviceCost dc = deviceCostService.getCost(deviceId, Long.parseLong(costId));
-			if (dc == null) {
-				
-				if (deviceCostService.createCost(deviceCost)) {
-					models.put("result", "ok");
-				} else {
-					models.put("result", "error");
-				}
-			} else {
-				
-				if (deviceCostService.updateCost(deviceCost)) {
-					models.put("result", "ok");
-				} else {
-					models.put("result", "error");
-				}
-			}
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -146,12 +125,7 @@ public class JsonController {
 	public Map getPortfolio(String deviceId, String portfolioId, String serviceTicket,
 			Map<String, Object> models, Locale locale) {
 		
-		DevicePortfolio dp = devicePortfolioService.getPortfolio(deviceId, Long.parseLong(portfolioId));
-		if (dp == null) {
-			models.put("result", "ok");
-		} else {
-			models.put("result", dp);
-		}
+	
 		
 		return models;
 	}
@@ -171,22 +145,7 @@ public class JsonController {
 			devicePortfolio.setShare(share);
 			devicePortfolio.setCreateTime(this.stringToDatetime(createTime));
 			
-			DevicePortfolio dp = devicePortfolioService.getPortfolio(deviceId, Long.parseLong(portfolioId));
-			if (dp == null) {
-				
-				if (devicePortfolioService.createPortfolio(devicePortfolio)) {
-					models.put("result", "ok");
-				} else {
-					models.put("result", "error");
-				}
-			} else {
-				
-				if (devicePortfolioService.updatePortfolio(devicePortfolio)) {
-					models.put("result", "ok");
-				} else {
-					models.put("result", "error");
-				}
-			}
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -201,12 +160,6 @@ public class JsonController {
 	public Map getPortfolioDetail(String deviceId, String portfolioDetailId, String serviceTicket,
 			Map<String, Object> models, Locale locale) {
 		
-		DevicePortfolioDetail dpd = devicePortfolioDetailService.getPortfolioDetail(deviceId, Long.parseLong(portfolioDetailId));
-		if (dpd == null) {
-			models.put("result", "ok");
-		} else {
-			models.put("result", dpd);
-		}
 		
 		return models;
 	}
@@ -234,22 +187,7 @@ public class JsonController {
 			devicePortfolioDetail.setTradingFee(Double.parseDouble(tradingFee));
 			devicePortfolioDetail.setPortfolioId(Long.parseLong(portfolioId));
 			
-			DevicePortfolioDetail dpd = devicePortfolioDetailService.getPortfolioDetail(deviceId, Long.parseLong(portfolioDetailId));
-			if (dpd == null) {
-				
-				if (devicePortfolioDetailService.createPortfolioDetail(devicePortfolioDetail)) {
-					models.put("result", "ok");
-				} else {
-					models.put("result", "error");
-				}
-			} else {
-				
-				if (devicePortfolioDetailService.updatePortfolioDetail(devicePortfolioDetail)) {
-					models.put("result", "ok");
-				} else {
-					models.put("result", "error");
-				}
-			}
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -264,12 +202,6 @@ public class JsonController {
 	public Map getProfitLoss(String deviceId, String profitLossId, String serviceTicket,
 			Map<String, Object> models, Locale locale) {
 		
-		DeviceProfitLoss dpl = deviceProfitLossService.getProfitLoss(deviceId, Long.parseLong(profitLossId));
-		if (dpl == null) {
-			models.put("result", "ok");
-		} else {
-			models.put("result", dpl);
-		}
 		
 		return models;
 	}
@@ -292,22 +224,7 @@ public class JsonController {
 			deviceProfitLoss.setStatus(status);
 			deviceProfitLoss.setUpdateTime(this.stringToDatetime(updateTime));
 			
-			DeviceProfitLoss dpl = deviceProfitLossService.getProfitLoss(deviceId, Long.parseLong(profitLossId));
-			if (dpl == null) {
-				
-				if (deviceProfitLossService.createProfitLoss(deviceProfitLoss)) {
-					models.put("result", "ok");
-				} else {
-					models.put("result", "error");
-				}
-			} else {
-				
-				if (deviceProfitLossService.updateProfitLoss(deviceProfitLoss)) {
-					models.put("result", "ok");
-				} else {
-					models.put("result", "error");
-				}
-			}
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -322,12 +239,7 @@ public class JsonController {
 	public Map getStockExchange(String deviceId, String stockExchangeId, String serviceTicket,
 			Map<String, Object> models, Locale locale) {
 		
-		DeviceStockExchange dse = deviceStockExchangeService.getStockExchange(deviceId, Long.parseLong(stockExchangeId));
-		if (dse == null) {
-			models.put("result", "ok");
-		} else {
-			models.put("result", dse);
-		}
+		
 		
 		return models;
 	}
@@ -347,22 +259,6 @@ public class JsonController {
 			deviceStockExchange.setArea(area);
 			deviceStockExchange.setCode(code);
 			
-			DeviceStockExchange dse = deviceStockExchangeService.getStockExchange(deviceId, Long.parseLong(stockExchangeId));
-			if (dse == null) {
-				
-				if (deviceStockExchangeService.createStockExchange(deviceStockExchange)) {
-					models.put("result", "ok");
-				} else {
-					models.put("result", "error");
-				}
-			} else {
-				
-				if (deviceStockExchangeService.updateStockExchange(deviceStockExchange)) {
-					models.put("result", "ok");
-				} else {
-					models.put("result", "error");
-				}
-			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -377,12 +273,7 @@ public class JsonController {
 	public Map getUser(String deviceId, String userId, String serviceTicket,
 			Map<String, Object> models, Locale locale) {
 		
-		DeviceUser du = deviceUserService.getUser(deviceId, Long.parseLong(userId));
-		if (du == null) {
-			models.put("result", "ok");
-		} else {
-			models.put("result", du);
-		}
+		
 		
 		return models;
 	}
@@ -407,22 +298,7 @@ public class JsonController {
 			deviceUser.setGreenAsRise(greenAsRise);
 			deviceUser.setCreateTime(this.stringToDatetime(createTime));
 			
-			DeviceUser du = deviceUserService.getUser(deviceId, Long.parseLong(userId));
-			if (du == null) {
-				
-				if (deviceUserService.createUser(deviceUser)) {
-					models.put("result", "ok");
-				} else {
-					models.put("result", "error");
-				}
-			} else {
-				
-				if (deviceUserService.updateUser(deviceUser)) {
-					models.put("result", "ok");
-				} else {
-					models.put("result", "error");
-				}
-			}
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -437,12 +313,7 @@ public class JsonController {
 	public Map getUserPortfolio(String deviceId, String userPortfolioId, String serviceTicket,
 			Map<String, Object> models, Locale locale) {
 		
-		DeviceUserPortfolio dup = deviceUserPortfolioService.getUserPortfolio(deviceId, Long.parseLong(userPortfolioId));
-		if (dup == null) {
-			models.put("result", "ok");
-		} else {
-			models.put("result", dup);
-		}
+		
 		
 		return models;
 	}
@@ -462,22 +333,7 @@ public class JsonController {
 			deviceUserPortfolio.setPortfolioId(Long.parseLong(portfolioId));
 			deviceUserPortfolio.setCreateTime(this.stringToDatetime(createTime));
 			
-			DeviceUserPortfolio dup = deviceUserPortfolioService.getUserPortfolio(deviceId, Long.parseLong(userPortfolioId));
-			if (dup == null) {
-				
-				if (deviceUserPortfolioService.createUserPortfolio(deviceUserPortfolio)) {
-					models.put("result", "ok");
-				} else {
-					models.put("result", "error");
-				}
-			} else {
-				
-				if (deviceUserPortfolioService.updateUserPortfolio(deviceUserPortfolio)) {
-					models.put("result", "ok");
-				} else {
-					models.put("result", "error");
-				}
-			}
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();

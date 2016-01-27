@@ -10,25 +10,26 @@ import javax.persistence.Table;
 @Table(name = "device_cost", catalog = "sb")
 public class DeviceCost implements java.io.Serializable
 {
-	private static final long serialVersionUID = 1L;
 
+	private static final long serialVersionUID = 1L;
+	
 	private Long id;
 	private String deviceId;
-	private long costId;
-	private double tranCost;
-	private double tax;
-	private double commission;
-	private double minChar;
+	private Long costId;
+	private Double tranCost;
+	private Double tax;
+	private Double commission;
+	private Double minChar;
 
 	public DeviceCost() {
 	}
 
-	public DeviceCost(String deviceId, long costId) {
+	public DeviceCost(String deviceId, Long costId) {
 		this.deviceId = deviceId;
 		this.costId = costId;
 	}
 
-	public DeviceCost(String deviceId, long costId, double tranCost, double tax, double commission, double minChar) {
+	public DeviceCost(String deviceId, Long costId, Double tranCost, Double tax, Double commission, Double minChar) {
 		this.deviceId = deviceId;
 		this.costId = costId;
 		this.tranCost = tranCost;
@@ -58,47 +59,47 @@ public class DeviceCost implements java.io.Serializable
 	}
 
 	@Column(name = "cost_id")
-	public long getCostId() {
+	public Long getCostId() {
 		return this.costId;
 	}
 
-	public void setCostId(long costId) {
+	public void setCostId(Long costId) {
 		this.costId = costId;
 	}
 
 	@Column(name = "tran_cost")
-	public double getTranCost() {
+	public Double getTranCost() {
 		return this.tranCost;
 	}
 
-	public void setTranCost(double tranCost) {
+	public void setTranCost(Double tranCost) {
 		this.tranCost = tranCost;
 	}
 
 	@Column(name = "tax")
-	public double getTax() {
+	public Double getTax() {
 		return tax;
 	}
 
-	public void setTax(double tax) {
+	public void setTax(Double tax) {
 		this.tax = tax;
 	}
 
 	@Column(name = "commission")
-	public double getCommission() {
+	public Double getCommission() {
 		return commission;
 	}
 
-	public void setCommission(double commission) {
+	public void setCommission(Double commission) {
 		this.commission = commission;
 	}
 
 	@Column(name = "min_char")
-	public double getMinChar() {
+	public Double getMinChar() {
 		return minChar;
 	}
 
-	public void setMinChar(double minChar) {
+	public void setMinChar(Double minChar) {
 		this.minChar = minChar;
 	}
 	

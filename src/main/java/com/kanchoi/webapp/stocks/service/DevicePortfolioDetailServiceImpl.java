@@ -18,23 +18,4 @@ public class DevicePortfolioDetailServiceImpl implements DevicePortfolioDetailSe
 	private DevicePortfolioDetailDao devicePortfolioDetailDao;
 
 
-	public boolean createPortfolioDetail(DevicePortfolioDetail portfolioDetail) {
-		return devicePortfolioDetailDao.create(portfolioDetail);
-	}
-	
-	
-	public boolean updatePortfolioDetail(DevicePortfolioDetail portfolioDetail) {
-		return devicePortfolioDetailDao.update(portfolioDetail);
-	}
-	
-	
-	public boolean deletePortfolioDetail(String deviceId, long portfolioDetailId) {
-		return devicePortfolioDetailDao.delete(deviceId, portfolioDetailId);	
-	}
-	
-	
-	public DevicePortfolioDetail getPortfolioDetail(String deviceId, long portfolioDetailId) {
-		return devicePortfolioDetailDao.get(deviceId, portfolioDetailId);
-	}
-	
 }

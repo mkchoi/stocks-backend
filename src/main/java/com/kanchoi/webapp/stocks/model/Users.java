@@ -14,12 +14,12 @@ public class Users implements java.io.Serializable
 
 	private String username;
 	private String password;
-	private int enabled;
+	private Integer enabled;
 
 	public Users() {
 	}
 
-	public Users(String username, String password, int enabled) {
+	public Users(String username, String password, Integer enabled) {
 		this.username = username;
 		this.password = password;
 		this.setEnabled(enabled);
@@ -45,11 +45,11 @@ public class Users implements java.io.Serializable
 	}
 
 	@Column(name = "enabled")
-	public int getEnabled() {
+	public Integer getEnabled() {
 		return enabled;
 	}
 
-	public void setEnabled(int enabled) {
+	public void setEnabled(Integer enabled) {
 		this.enabled = enabled;
 	}
 

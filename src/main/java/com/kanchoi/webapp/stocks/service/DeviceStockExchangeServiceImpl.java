@@ -18,23 +18,5 @@ public class DeviceStockExchangeServiceImpl implements DeviceStockExchangeServic
 	private DeviceStockExchangeDao deviceStockExchangeDao;
 
 
-	public boolean createStockExchange(DeviceStockExchange stockExchange) {
-		return deviceStockExchangeDao.create(stockExchange);
-	}
-	
-	
-	public boolean updateStockExchange(DeviceStockExchange stockExchange) {
-		return deviceStockExchangeDao.update(stockExchange);
-	}
-	
-	
-	public boolean deleteStockExchange(String deviceId, long stockExchangeId) {
-		return deviceStockExchangeDao.delete(deviceId, stockExchangeId);	
-	}
-	
-	
-	public DeviceStockExchange getStockExchange(String deviceId, long stockExchangeId) {
-		return deviceStockExchangeDao.get(deviceId, stockExchangeId);
-	}
 	
 }

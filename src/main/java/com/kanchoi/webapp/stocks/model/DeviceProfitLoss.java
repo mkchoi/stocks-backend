@@ -5,34 +5,33 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 
 @Entity
 @Table(name = "device_profit_loss", catalog = "sb")
-@IdClass(DeviceProfitLossId.class)
 public class DeviceProfitLoss implements java.io.Serializable
 {
 	private static final long serialVersionUID = 1L;
 
+	private Long id;
 	private String deviceId;
-	private long profitLossId;
-	private long userId;
-	private long portfolioId;
-	private double amount;
+	private Long profitLossId;
+	private Long userId;
+	private Long portfolioId;
+	private Double amount;
 	private String status;
 	private Date updateTime;
 
 	public DeviceProfitLoss() {
 	}
 
-	public DeviceProfitLoss(String deviceId, long profitLossId) {
+	public DeviceProfitLoss(String deviceId, Long profitLossId) {
 		this.deviceId = deviceId;
 		this.profitLossId = profitLossId;
 	}
 
-	public DeviceProfitLoss(String deviceId, long profitLossId, long userId, long portfolioId, double amount, String status, Date updateTime) {
+	public DeviceProfitLoss(String deviceId, Long profitLossId, Long userId, Long portfolioId, Double amount, String status, Date updateTime) {
 		this.deviceId = deviceId;
 		this.profitLossId = profitLossId;
 		this.userId = userId;
@@ -44,6 +43,15 @@ public class DeviceProfitLoss implements java.io.Serializable
 	}
 
 	@Id
+	@Column(name = "id")
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	@Column(name = "device_id", nullable = false, length = 50)
 	public String getDeviceId() {
 		return this.deviceId;
@@ -53,40 +61,39 @@ public class DeviceProfitLoss implements java.io.Serializable
 		this.deviceId = deviceId;
 	}
 
-	@Id
 	@Column(name = "profit_loss_id")
-	public long getProfitLossId() {
+	public Long getProfitLossId() {
 		return this.profitLossId;
 	}
 
-	public void setProfitLossId(long profitLossId) {
+	public void setProfitLossId(Long profitLossId) {
 		this.profitLossId = profitLossId;
 	}
 
 	@Column(name = "user_id")
-	public long getUserId() {
+	public Long getUserId() {
 		return this.userId;
 	}
 
-	public void setUserId(long userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
 	@Column(name = "portfolio_id")
-	public long getPortfolioId() {
+	public Long getPortfolioId() {
 		return portfolioId;
 	}
 
-	public void setPortfolioId(long portfolioId) {
+	public void setPortfolioId(Long portfolioId) {
 		this.portfolioId = portfolioId;
 	}
 
 	@Column(name = "amount")
-	public double getAmount() {
+	public Double getAmount() {
 		return amount;
 	}
 
-	public void setAmount(double amount) {
+	public void setAmount(Double amount) {
 		this.amount = amount;
 	}
 

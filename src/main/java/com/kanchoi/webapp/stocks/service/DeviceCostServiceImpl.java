@@ -17,24 +17,5 @@ public class DeviceCostServiceImpl implements DeviceCostService {
 	@Qualifier("deviceCostDao")
 	private DeviceCostDao deviceCostDao;
 
-
-	public boolean createCost(DeviceCost cost) {
-		return deviceCostDao.create(cost);
-	}
-	
-	
-	public boolean updateCost(DeviceCost cost) {
-		return deviceCostDao.update(cost);
-	}
-	
-	
-	public boolean deleteCost(String deviceId, long costId) {
-		return deviceCostDao.delete(deviceId, costId);	
-	}
-	
-	
-	public DeviceCost getCost(String deviceId, long costId) {
-		return deviceCostDao.get(deviceId, costId);
-	}
 	
 }
