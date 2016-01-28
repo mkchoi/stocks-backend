@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "forum_topic", catalog = "sb")
+@Table(name = "forum_topic")
 public class ForumTopic implements java.io.Serializable
 {
 	private static final long serialVersionUID = 1L;
