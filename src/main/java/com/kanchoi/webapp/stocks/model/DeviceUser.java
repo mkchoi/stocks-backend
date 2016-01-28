@@ -4,26 +4,51 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "device_user", catalog = "sb")
+@Table(name = "device_user")
 public class DeviceUser implements java.io.Serializable
 {
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
 	private Long id;
+	
+	@Column(name = "device_id", nullable = false, length = 50)
 	private String deviceId;
+	
+	@Column(name = "user_id")
 	private Long userId;
+	
+	@Column(name = "name", unique = false, nullable = true, length = 50)
 	private String name;
+	
+	@Column(name = "photo")
 	private byte[] photo;
+	
+	@Column(name = "type", unique = false, nullable = true, length = 20)
 	private String type;
+	
+	@Column(name = "share", unique = false, nullable = true, length = 3)
 	private String share;
+	
+	@Column(name = "email", unique = false, nullable = true, length = 100)
 	private String email;
+	
+	@Column(name = "add_trading_fee", unique = false, nullable = true, length = 3)
 	private String addTradingFee;
+	
+	@Column(name = "green_as_rise", unique = false, nullable = true, length = 3)
 	private String greenAsRise;
+	
+	@Column(name = "create_time")
 	private Date createTime;
 
 	public DeviceUser() {
@@ -47,8 +72,6 @@ public class DeviceUser implements java.io.Serializable
 		this.createTime = createTime;
 	}
 
-	@Id
-	@Column(name = "id")
 	public Long getId() {
 		return id;
 	}
@@ -57,7 +80,6 @@ public class DeviceUser implements java.io.Serializable
 		this.id = id;
 	}
 
-	@Column(name = "device_id", nullable = false, length = 50)
 	public String getDeviceId() {
 		return this.deviceId;
 	}
@@ -66,7 +88,6 @@ public class DeviceUser implements java.io.Serializable
 		this.deviceId = deviceId;
 	}
 
-	@Column(name = "user_id")
 	public Long getUserId() {
 		return this.userId;
 	}
@@ -75,7 +96,6 @@ public class DeviceUser implements java.io.Serializable
 		this.userId = userId;
 	}
 
-	@Column(name = "name", unique = false, nullable = true, length = 50)
 	public String getName() {
 		return name;
 	}
@@ -84,7 +104,7 @@ public class DeviceUser implements java.io.Serializable
 		this.name = name;
 	}
 
-	@Column(name = "photo")
+	
 	public byte[] getPhoto() {
 		return photo;
 	}
@@ -93,7 +113,7 @@ public class DeviceUser implements java.io.Serializable
 		this.photo = photo;
 	}
 
-	@Column(name = "type", unique = false, nullable = true, length = 20)
+	
 	public String getType() {
 		return type;
 	}
@@ -102,7 +122,6 @@ public class DeviceUser implements java.io.Serializable
 		this.type = type;
 	}
 
-	@Column(name = "share", unique = false, nullable = true, length = 3)
 	public String getShare() {
 		return share;
 	}
@@ -111,7 +130,6 @@ public class DeviceUser implements java.io.Serializable
 		this.share = share;
 	}
 
-	@Column(name = "email", unique = false, nullable = true, length = 100)
 	public String getEmail() {
 		return email;
 	}
@@ -120,7 +138,6 @@ public class DeviceUser implements java.io.Serializable
 		this.email = email;
 	}
 
-	@Column(name = "add_trading_fee", unique = false, nullable = true, length = 3)
 	public String getAddTradingFee() {
 		return addTradingFee;
 	}
@@ -129,7 +146,6 @@ public class DeviceUser implements java.io.Serializable
 		this.addTradingFee = addTradingFee;
 	}
 
-	@Column(name = "green_as_rise", unique = false, nullable = true, length = 3)
 	public String getGreenAsRise() {
 		return greenAsRise;
 	}
@@ -138,7 +154,6 @@ public class DeviceUser implements java.io.Serializable
 		this.greenAsRise = greenAsRise;
 	}
 
-	@Column(name = "create_time")
 	public Date getCreateTime() {
 		return createTime;
 	}

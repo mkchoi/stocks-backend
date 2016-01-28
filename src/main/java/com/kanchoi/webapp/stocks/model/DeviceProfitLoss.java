@@ -4,23 +4,42 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "device_profit_loss", catalog = "sb")
+@Table(name = "device_profit_loss")
 public class DeviceProfitLoss implements java.io.Serializable
 {
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
 	private Long id;
+	
+	@Column(name = "device_id", nullable = false, length = 50)
 	private String deviceId;
+	
+	@Column(name = "profit_loss_id")
 	private Long profitLossId;
+	
+	@Column(name = "user_id")
 	private Long userId;
+	
+	@Column(name = "portfolio_id")
 	private Long portfolioId;
+	
+	@Column(name = "amount")
 	private Double amount;
+	
+	@Column(name = "status", unique = false, nullable = true, length = 10 )
 	private String status;
+	
+	@Column(name = "update_time")
 	private Date updateTime;
 
 	public DeviceProfitLoss() {
@@ -42,8 +61,6 @@ public class DeviceProfitLoss implements java.io.Serializable
 		
 	}
 
-	@Id
-	@Column(name = "id")
 	public Long getId() {
 		return id;
 	}
@@ -52,7 +69,6 @@ public class DeviceProfitLoss implements java.io.Serializable
 		this.id = id;
 	}
 
-	@Column(name = "device_id", nullable = false, length = 50)
 	public String getDeviceId() {
 		return this.deviceId;
 	}
@@ -61,7 +77,6 @@ public class DeviceProfitLoss implements java.io.Serializable
 		this.deviceId = deviceId;
 	}
 
-	@Column(name = "profit_loss_id")
 	public Long getProfitLossId() {
 		return this.profitLossId;
 	}
@@ -70,7 +85,6 @@ public class DeviceProfitLoss implements java.io.Serializable
 		this.profitLossId = profitLossId;
 	}
 
-	@Column(name = "user_id")
 	public Long getUserId() {
 		return this.userId;
 	}
@@ -79,7 +93,6 @@ public class DeviceProfitLoss implements java.io.Serializable
 		this.userId = userId;
 	}
 
-	@Column(name = "portfolio_id")
 	public Long getPortfolioId() {
 		return portfolioId;
 	}
@@ -88,7 +101,6 @@ public class DeviceProfitLoss implements java.io.Serializable
 		this.portfolioId = portfolioId;
 	}
 
-	@Column(name = "amount")
 	public Double getAmount() {
 		return amount;
 	}
@@ -97,7 +109,6 @@ public class DeviceProfitLoss implements java.io.Serializable
 		this.amount = amount;
 	}
 
-	@Column(name = "status", unique = false, nullable = true, length = 10 )
 	public String getStatus() {
 		return status;
 	}
@@ -106,7 +117,6 @@ public class DeviceProfitLoss implements java.io.Serializable
 		this.status = status;
 	}
 	
-	@Column(name = "update_time")
 	public Date getUpdateTime() {
 		return updateTime;
 	}

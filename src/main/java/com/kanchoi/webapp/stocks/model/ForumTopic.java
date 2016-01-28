@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -14,11 +16,24 @@ public class ForumTopic implements java.io.Serializable
 {
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
 	private Long id;
+	
+	@Column(name = "topic_name", nullable = false, length = 500)
 	private String topicName;
+	
+	@Column(name = "user_email", nullable = false, length = 100)
 	private String userEmail;
+	
+	@Column(name = "create_time")
 	private Date createTime;
+	
+	@Column(name = "device_id", nullable = true, length= 50)
 	private String deviceId;
+	
+	@Column(name = "topic_id")
 	private Long topicId;
 
 	public ForumTopic() {
@@ -34,8 +49,6 @@ public class ForumTopic implements java.io.Serializable
 		
 	}
 
-	@Id
-	@Column(name = "id")
 	public Long getId() {
 		return this.id;
 	}
@@ -44,7 +57,6 @@ public class ForumTopic implements java.io.Serializable
 		this.id = id;
 	}
 
-	@Column(name = "topic_name", nullable = false, length = 500)
 	public String getTopicName() {
 		return this.topicName;
 	}
@@ -53,7 +65,6 @@ public class ForumTopic implements java.io.Serializable
 		this.topicName = topicName;
 	}
 
-	@Column(name = "user_email", nullable = false, length = 100)
 	public String getUserEmail() {
 		return this.userEmail;
 	}
@@ -62,7 +73,6 @@ public class ForumTopic implements java.io.Serializable
 		this.userEmail = userEmail;
 	}
 
-	@Column(name = "create_time")
 	public Date getCreateTime() {
 		return createTime;
 	}
@@ -71,7 +81,6 @@ public class ForumTopic implements java.io.Serializable
 		this.createTime = createTime;
 	}
 
-	@Column(name = "device_id", nullable = true, length= 50)
 	public String getDeviceId() {
 		return deviceId;
 	}
@@ -80,7 +89,6 @@ public class ForumTopic implements java.io.Serializable
 		this.deviceId = deviceId;
 	}
 
-	@Column(name = "topic_id")
 	public Long getTopicId() {
 		return topicId;
 	}

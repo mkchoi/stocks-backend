@@ -4,21 +4,36 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "device_portfolio", catalog = "sb")
+@Table(name = "device_portfolio")
 public class DevicePortfolio implements java.io.Serializable
 {
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
 	private Long id;
+	
+	@Column(name = "device_id", nullable = false, length = 50)
 	private String deviceId;
+	
+	@Column(name = "portfolio_id")
 	private Long portfolioId;
+	
+	@Column(name = "name", unique = false, nullable = true, length = 100)
 	private String name;
+	
+	@Column(name = "share", unique = false, nullable = true, length = 3)
 	private String share;
+	
+	@Column(name = "create_time")
 	private Date createTime;
 
 	public DevicePortfolio() {
@@ -38,8 +53,7 @@ public class DevicePortfolio implements java.io.Serializable
 		
 	}
 
-	@Id
-	@Column(name = "id")
+	
 	public Long getId() {
 		return id;
 	}
@@ -48,7 +62,6 @@ public class DevicePortfolio implements java.io.Serializable
 		this.id = id;
 	}
 
-	@Column(name = "device_id", nullable = false, length = 50)
 	public String getDeviceId() {
 		return this.deviceId;
 	}
@@ -57,7 +70,6 @@ public class DevicePortfolio implements java.io.Serializable
 		this.deviceId = deviceId;
 	}
 
-	@Column(name = "portfolio_id")
 	public Long getPortfolioId() {
 		return this.portfolioId;
 	}
@@ -66,7 +78,6 @@ public class DevicePortfolio implements java.io.Serializable
 		this.portfolioId = portfolioId;
 	}
 
-	@Column(name = "name", unique = false, nullable = true, length = 100)
 	public String getName() {
 		return this.name;
 	}
@@ -75,7 +86,6 @@ public class DevicePortfolio implements java.io.Serializable
 		this.name = name;
 	}
 	
-	@Column(name = "share", unique = false, nullable = true, length = 3)
 	public String getShare() {
 		return this.share;
 	}
@@ -84,7 +94,6 @@ public class DevicePortfolio implements java.io.Serializable
 		this.share = share;
 	}
 	
-	@Column(name = "create_time")
 	public Date getCreateTime() {
 		return this.createTime;
 	}

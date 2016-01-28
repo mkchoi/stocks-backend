@@ -2,21 +2,36 @@ package com.kanchoi.webapp.stocks.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "device_stock_exchange", catalog = "sb")
+@Table(name = "device_stock_exchange")
 public class DeviceStockExchange implements java.io.Serializable
 {
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
 	private Long id;
+	
+	@Column(name = "device_id", nullable = false, length = 50)
 	private String deviceId;
+	
+	@Column(name = "stock_exchange_id")
 	private Long stockExchangeId;
+	
+	@Column(name = "market", unique = false, nullable = true, length = 20)
 	private String market;
+	
+	@Column(name = "area", unique = false, nullable = true, length = 20)
 	private String area;
+	
+	@Column(name = "code", unique = false, nullable = true, length = 2)
 	private String code;
 
 	public DeviceStockExchange() {
@@ -35,8 +50,6 @@ public class DeviceStockExchange implements java.io.Serializable
 		this.code = code;
 	}
 
-	@Id
-	@Column(name = "id")
 	public Long getId() {
 		return id;
 	}
@@ -45,7 +58,6 @@ public class DeviceStockExchange implements java.io.Serializable
 		this.id = id;
 	}
 
-	@Column(name = "device_id", nullable = false, length = 50)
 	public String getDeviceId() {
 		return this.deviceId;
 	}
@@ -54,7 +66,6 @@ public class DeviceStockExchange implements java.io.Serializable
 		this.deviceId = deviceId;
 	}
 
-	@Column(name = "stock_exchange_id")
 	public Long getStockExchangeId() {
 		return stockExchangeId;
 	}
@@ -63,7 +74,6 @@ public class DeviceStockExchange implements java.io.Serializable
 		this.stockExchangeId = stockExchangeId;
 	}
 
-	@Column(name = "market", unique = false, nullable = true, length = 20)
 	public String getMarket() {
 		return this.market;
 	}
@@ -72,7 +82,6 @@ public class DeviceStockExchange implements java.io.Serializable
 		this.market = market;
 	}
 
-	@Column(name = "area", unique = false, nullable = true, length = 20)
 	public String getArea() {
 		return area;
 	}
@@ -81,7 +90,6 @@ public class DeviceStockExchange implements java.io.Serializable
 		this.area = area;
 	}
 
-	@Column(name = "code", unique = false, nullable = true, length = 2)
 	public String getCode() {
 		return code;
 	}

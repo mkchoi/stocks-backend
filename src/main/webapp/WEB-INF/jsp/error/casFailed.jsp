@@ -32,7 +32,7 @@
 			%>
 		</div>
 		<br/>
-		<a href="${contextPath}/home">Return home</a>
+		<a href="<c:url value="j_spring_security_logout" />">Logout</a>
 		<br/>
 		<br/>
 	</div>

@@ -7,12 +7,16 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "authorities", catalog = "sb")
+@Table(name = "authorities")
 public class Authorities implements java.io.Serializable
 {
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@Column(name = "username", nullable = false, length = 20)
 	private String username;
+	
+	@Column(name = "authority", nullable = false, length = 100)
 	private String authority;
 	
 
@@ -24,8 +28,6 @@ public class Authorities implements java.io.Serializable
 		this.authority = authority;
 	}
 
-	@Id
-	@Column(name = "username", nullable = false, length = 20)
 	public String getUsername() {
 		return this.username;
 	}
@@ -34,7 +36,6 @@ public class Authorities implements java.io.Serializable
 		this.username = username;
 	}
 
-	@Column(name = "authority", nullable = false, length = 100)
 	public String getAuthority() {
 		return this.authority;
 	}

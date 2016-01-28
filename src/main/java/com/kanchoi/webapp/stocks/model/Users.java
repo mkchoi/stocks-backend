@@ -12,8 +12,14 @@ public class Users implements java.io.Serializable
 {
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@Column(name = "username", nullable = false, length = 20)
 	private String username;
+	
+	@Column(name = "password", nullable = false, length = 100)
 	private String password;
+	
+	@Column(name = "enabled")
 	private Integer enabled;
 
 	public Users() {
@@ -25,8 +31,6 @@ public class Users implements java.io.Serializable
 		this.setEnabled(enabled);
 	}
 
-	@Id
-	@Column(name = "username", nullable = false, length = 20)
 	public String getUsername() {
 		return this.username;
 	}
@@ -35,7 +39,6 @@ public class Users implements java.io.Serializable
 		this.username = username;
 	}
 
-	@Column(name = "password", nullable = false, length = 100)
 	public String getPassword() {
 		return this.password;
 	}
@@ -44,7 +47,6 @@ public class Users implements java.io.Serializable
 		this.password = password;
 	}
 
-	@Column(name = "enabled")
 	public Integer getEnabled() {
 		return enabled;
 	}
