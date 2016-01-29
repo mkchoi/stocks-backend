@@ -25,7 +25,6 @@
 		</property>
 	</bean>
 
-<!-- 
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="${db.driver}" />
@@ -54,9 +53,8 @@
 			</bean>
 		</property>
 	</bean>
-	
--->
-	
+
+<!-- 	
 	<bean class="java.net.URI" id="dbUrl">
 	    <constructor-arg value="#{systemEnvironment['DATABASE_URL']}"/>
 	</bean>
@@ -80,7 +78,8 @@
 			</bean>
 		</property>
 	</bean>
-
+ -->
+ 
 	<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
 	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 

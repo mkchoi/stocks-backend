@@ -14,6 +14,7 @@
 	<http pattern="/js/**" security="none" />
 	<http pattern="/styles/**" security="none" />
 	<http pattern="/json/**" security="none" />
+	<http pattern="/webjars/**" security="none" />
 
 	<http entry-point-ref="casEntryPoint" use-expressions="true">
 		<intercept-url pattern="/logout" access="permitAll" />

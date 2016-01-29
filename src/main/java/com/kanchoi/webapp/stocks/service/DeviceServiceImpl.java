@@ -5,13 +5,14 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.kanchoi.webapp.stocks.dao.DeviceUserDao;
-import com.kanchoi.webapp.stocks.model.DeviceUser;
 
-@Service("deviceUserService")
-public class DeviceUserServiceImpl implements DeviceUserService {
-	private static Log log = LogFactory.getLog(DeviceUserServiceImpl.class);
+@Service("deviceService")
+@Transactional(value = "transactionManager", rollbackFor = Throwable.class)
+public class DeviceServiceImpl implements DeviceService {
+	private static Log log = LogFactory.getLog(DeviceServiceImpl.class);
 
 	@Autowired
 	@Qualifier("deviceUserDao")

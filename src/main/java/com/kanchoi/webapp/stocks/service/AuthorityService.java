@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.kanchoi.webapp.stocks.model.Authorities;
 
-public interface AuthoritiesService {
+public interface AuthorityService {
 
 	
 }
