@@ -11,6 +11,7 @@
 package com.kanchoi.webapp.stocks.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.logging.Log;
@@ -25,9 +26,11 @@ import com.kanchoi.webapp.stocks.model.DeviceCost;
 import com.kanchoi.webapp.stocks.model.DevicePortfolio;
 import com.kanchoi.webapp.stocks.model.DevicePortfolioDetail;
 import com.kanchoi.webapp.stocks.model.DeviceProfitLoss;
+import com.kanchoi.webapp.stocks.model.DeviceSettings;
 import com.kanchoi.webapp.stocks.model.DeviceStockExchange;
 import com.kanchoi.webapp.stocks.model.DeviceUser;
 import com.kanchoi.webapp.stocks.model.DeviceUserPortfolio;
+import com.kanchoi.webapp.stocks.model.UserPortfolios;
 import com.kanchoi.webapp.stocks.service.AuthorityService;
 import com.kanchoi.webapp.stocks.service.DeviceService;
 import com.kanchoi.webapp.stocks.service.ForumService;
@@ -54,7 +57,7 @@ public class JsonController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/json/serviceStatus")
-	public Map getServiceStatus() {
+	public Map<String, Object> getServiceStatus() {
 		Map<String, Object> models = new HashMap<String, Object>();
 		models.put("result", "ok");
 		
@@ -63,7 +66,7 @@ public class JsonController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/json/getSetting/{key}")
-	public Map getSystemSetting(@PathVariable("key") String key, String serviceTicket) {
+	public Map<String, Object> getSystemSetting(@PathVariable("key") String key, String serviceTicket) {
 		
 		Map<String, Object> models = new HashMap<String, Object>();
 		models.put("result", "ok");
@@ -73,63 +76,37 @@ public class JsonController {
 	
 	
 	@ResponseBody
-	@RequestMapping(value = "/json/getCost.do")
-	public Map getCost(String deviceId, String costId, String serviceTicket) {
+	@RequestMapping(value = "/json/getDeviceSettings.do")
+	public Map<String, Object> getDeviceSettings(String deviceId, String serviceTicket) {
 		
 		Map<String, Object> models = new HashMap<String, Object>();
+		DeviceSettings ds = deviceService.getDeviceSettings(deviceId);
+		models.put("result", ds);
 		return models;
 	}
 
 	@ResponseBody
 	@RequestMapping(value = "/json/saveCost.do")
-	public Map saveCost(String deviceId, String costId, String tranCost, String tax, String commission, String minChar, String serviceTicket) {
+	public Map<String, Object> saveCost(String deviceId, String costId, String tranCost, String tax, String commission, String minChar, String serviceTicket) {
 		
 		log.info("Getting /json/saveCost.do...");
 		Map<String, Object> models = new HashMap<String, Object>();
 		
 		try {
 			DeviceCost deviceCost = new DeviceCost();
+			deviceCost.setId(Long.parseLong(costId));
 			deviceCost.setDeviceId(deviceId);
-			deviceCost.setCostId(Long.parseLong(costId));
 			deviceCost.setTranCost(Double.parseDouble(tranCost));
 			deviceCost.setTax(Double.parseDouble(tax));
 			deviceCost.setCommission(Double.parseDouble(commission));
 			deviceCost.setMinChar(Double.parseDouble(minChar));
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			models.put("result", "error");
-		}
-
-		return models;
-	}
-
-	@ResponseBody
-	@RequestMapping(value = "/json/getPortfolio.do")
-	public Map getPortfolio(String deviceId, String portfolioId, String serviceTicket) {
-		
-		Map<String, Object> models = new HashMap<String, Object>();
-		
-		return models;
-	}
-
-	@ResponseBody
-	@RequestMapping(value = "/json/savePortfolio.do")
-	public Map savePortfolio(String deviceId, String portfolioId, String name, String share, String createTime, String serviceTicket) {
-		
-		log.info("Getting /json/savePortfolio.do...");
-		Map<String, Object> models = new HashMap<String, Object>();
-		
-		try {
-			DevicePortfolio devicePortfolio = new DevicePortfolio();
-			devicePortfolio.setDeviceId(deviceId);
-			devicePortfolio.setPortfolioId(Long.parseLong(portfolioId));
-			devicePortfolio.setName(name);
-			devicePortfolio.setShare(share);
-			devicePortfolio.setCreateTime(CommonUtils.stringToDatetime(createTime));
 			
-			
-			
+			if (deviceService.saveDeviceCost(deviceCost) != null) {
+				models.put("result", "ok");
+			} else {
+				models.put("result", "error");
+			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			models.put("result", "error");
@@ -139,17 +116,145 @@ public class JsonController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/json/getPortfolioDetail.do")
-	public Map getPortfolioDetail(String deviceId, String portfolioDetailId, String serviceTicket) {
+	@RequestMapping(value = "/json/saveStockExchange.do")
+	public Map<String, Object> saveStockExchange(String deviceId, String stockExchangeId, String market, String area, 
+			String code, String serviceTicket) {
 		
+		log.info("Getting /json/saveStockExchange.do...");
 		Map<String, Object> models = new HashMap<String, Object>();
 		
+		try {
+			DeviceStockExchange deviceStockExchange = new DeviceStockExchange();
+			deviceStockExchange.setId(Long.parseLong(stockExchangeId));
+			deviceStockExchange.setDeviceId(deviceId);
+			deviceStockExchange.setMarket(market);
+			deviceStockExchange.setArea(area);
+			deviceStockExchange.setCode(code);
+			
+			if (deviceService.saveDeviceStockExchange(deviceStockExchange) != null) {
+				models.put("result", "ok");
+			} else {
+				models.put("result", "error");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			models.put("result", "error");
+		}
+
+		return models;
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/json/saveUser.do")
+	public Map<String, Object> saveUser(String deviceId, String userId, String name, String photo, String type, String share, 
+			String addTradingFee, String greenAsRise, String createTime, String serviceTicket) {
+		
+		log.info("Getting /json/saveUser.do...");
+		Map<String, Object> models = new HashMap<String, Object>();
+		
+		try {
+			DeviceUser deviceUser = new DeviceUser();
+			deviceUser.setId(Long.parseLong(userId));
+			deviceUser.setDeviceId(deviceId);
+			deviceUser.setName(name);
+			deviceUser.setPhoto(photo.getBytes());
+			deviceUser.setType(type);
+			deviceUser.setShare(share);
+			deviceUser.setAddTradingFee(addTradingFee);
+			deviceUser.setGreenAsRise(greenAsRise);
+			deviceUser.setCreateTime(CommonUtils.stringToDatetime(createTime));
+			
+			if (deviceService.saveDeviceUser(deviceUser) != null) {
+				models.put("result", "ok");
+			} else {
+				models.put("result", "error");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			models.put("result", "error");
+		}
+
+		return models;
+	}
+	
+	
+	/*****************************/
+
+	@ResponseBody
+	@RequestMapping(value = "/json/getUserPortfolios.do")
+	public Map<String, Object> getUserPortfolios(String deviceId, String userId, String serviceTicket) {
+		
+		Map<String, Object> models = new HashMap<String, Object>();
+		UserPortfolios up = deviceService.getUserPortfolios(deviceId, Long.parseLong(userId));
+		models.put("userPortfolios", up);
+		return models;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/json/saveUserPortfolio.do")
+	public Map<String, Object> saveUserPortfolio(String deviceId, String userPortfolioId, String userId, String portfolioId, 
+			String createTime, String serviceTicket) {
+		
+		log.info("Getting /json/saveUserPortfolio.do...");
+		Map<String, Object> models = new HashMap<String, Object>();
+		
+		try {
+			DeviceUserPortfolio deviceUserPortfolio = new DeviceUserPortfolio();
+			deviceUserPortfolio.setId(Long.parseLong(userPortfolioId));
+			deviceUserPortfolio.setDeviceId(deviceId);
+			deviceUserPortfolio.setUserId(Long.parseLong(userId));
+			deviceUserPortfolio.setPortfolioId(Long.parseLong(portfolioId));
+			deviceUserPortfolio.setCreateTime(CommonUtils.stringToDatetime(createTime));
+			
+			if (deviceService.saveDeviceUserPortfolio(deviceUserPortfolio) != null) {
+				models.put("result", "ok");
+			} else {
+				models.put("result", "error");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			models.put("result", "error");
+		}
+
+		return models;
+	}
+	
+
+	@ResponseBody
+	@RequestMapping(value = "/json/savePortfolio.do")
+	public Map<String, Object> savePortfolio(String deviceId, String portfolioId, String name, String share, String createTime, String serviceTicket) {
+		
+		log.info("Getting /json/savePortfolio.do...");
+		Map<String, Object> models = new HashMap<String, Object>();
+		
+		try {
+			DevicePortfolio devicePortfolio = new DevicePortfolio();
+			devicePortfolio.setId(Long.parseLong(portfolioId));
+			devicePortfolio.setDeviceId(deviceId);
+			devicePortfolio.setName(name);
+			devicePortfolio.setShare(share);
+			devicePortfolio.setCreateTime(CommonUtils.stringToDatetime(createTime));
+			
+			if (deviceService.saveDevicePortfolio(devicePortfolio) != null) {
+				models.put("result", "ok");
+			} else {
+				models.put("result", "error");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			models.put("result", "error");
+		}
+
 		return models;
 	}
 
 	@ResponseBody
 	@RequestMapping(value = "/json/savePortfolioDetail.do")
-	public Map savePortfolioDetail(String deviceId, String portfolioDetailId, String sequence, String stockSym, 
+	public Map<String, Object> savePortfolioDetail(String deviceId, String portfolioDetailId, String sequence, String stockSym, 
 			String stockName, String marketCode, String action, String actionPrice, String actionQty, String actionTime, 
 			String tradingFee, String portfolioId, String serviceTicket) {
 		
@@ -171,6 +276,11 @@ public class JsonController {
 			devicePortfolioDetail.setTradingFee(Double.parseDouble(tradingFee));
 			devicePortfolioDetail.setPortfolioId(Long.parseLong(portfolioId));
 			
+			if (deviceService.saveDevicePortfolioDetail(devicePortfolioDetail) != null) {
+				models.put("result", "ok");
+			} else {
+				models.put("result", "error");
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -179,19 +289,10 @@ public class JsonController {
 
 		return models;
 	}
-	
-	@ResponseBody
-	@RequestMapping(value = "/json/getProfitLoss.do")
-	public Map getProfitLoss(String deviceId, String profitLossId, String serviceTicket) {
-		
-		Map<String, Object> models = new HashMap<String, Object>();
-		
-		return models;
-	}
 
 	@ResponseBody
 	@RequestMapping(value = "/json/saveProfitLoss.do")
-	public Map saveProfitLoss(String deviceId, String profitLossId, String userId, String portfolioId, 
+	public Map<String, Object> saveProfitLoss(String deviceId, String profitLossId, String userId, String portfolioId, 
 			String amount, String status, String updateTime, String serviceTicket) {
 		
 		log.info("Getting /json/saveProfitLoss.do...");
@@ -199,49 +300,19 @@ public class JsonController {
 		
 		try {
 			DeviceProfitLoss deviceProfitLoss = new DeviceProfitLoss();
+			deviceProfitLoss.setId(Long.parseLong(profitLossId));
 			deviceProfitLoss.setDeviceId(deviceId);
-			deviceProfitLoss.setProfitLossId(Long.parseLong(profitLossId));
 			deviceProfitLoss.setUserId(Long.parseLong(userId));
 			deviceProfitLoss.setPortfolioId(Long.parseLong(portfolioId));
 			deviceProfitLoss.setAmount(Double.parseDouble(amount));
 			deviceProfitLoss.setStatus(status);
 			deviceProfitLoss.setUpdateTime(CommonUtils.stringToDatetime(updateTime));
 			
-			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			models.put("result", "error");
-		}
-
-		return models;
-	}
-	
-	@ResponseBody
-	@RequestMapping(value = "/json/getStockExchange.do")
-	public Map getStockExchange(String deviceId, String stockExchangeId, String serviceTicket) {
-		
-		Map<String, Object> models = new HashMap<String, Object>();
-		
-		return models;
-	}
-
-	@ResponseBody
-	@RequestMapping(value = "/json/saveStockExchange.do")
-	public Map saveStockExchange(String deviceId, String stockExchangeId, String market, String area, 
-			String code, String serviceTicket) {
-		
-		log.info("Getting /json/saveStockExchange.do...");
-		Map<String, Object> models = new HashMap<String, Object>();
-		
-		try {
-			DeviceStockExchange deviceStockExchange = new DeviceStockExchange();
-			deviceStockExchange.setDeviceId(deviceId);
-			deviceStockExchange.setStockExchangeId(Long.parseLong(stockExchangeId));
-			deviceStockExchange.setMarket(market);
-			deviceStockExchange.setArea(area);
-			deviceStockExchange.setCode(code);
-			
+			if (deviceService.saveDeviceProfitLoss(deviceProfitLoss) != null) {
+				models.put("result", "ok");
+			} else {
+				models.put("result", "error");
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -251,79 +322,7 @@ public class JsonController {
 		return models;
 	}
 	
-	@ResponseBody
-	@RequestMapping(value = "/json/getUser.do")
-	public Map getUser(String deviceId, String userId, String serviceTicket) {
-		
-		Map<String, Object> models = new HashMap<String, Object>();
-		
-		return models;
-	}
 
-	@ResponseBody
-	@RequestMapping(value = "/json/saveUser.do")
-	public Map saveUser(String deviceId, String userId, String name, String photo, String type, String share, 
-			String addTradingFee, String greenAsRise, String createTime, String serviceTicket) {
-		
-		log.info("Getting /json/saveUser.do...");
-		Map<String, Object> models = new HashMap<String, Object>();
-		
-		try {
-			DeviceUser deviceUser = new DeviceUser();
-			deviceUser.setDeviceId(deviceId);
-			deviceUser.setUserId(Long.parseLong(userId));
-			deviceUser.setName(name);
-			deviceUser.setPhoto(photo.getBytes());
-			deviceUser.setType(type);
-			deviceUser.setShare(share);
-			deviceUser.setAddTradingFee(addTradingFee);
-			deviceUser.setGreenAsRise(greenAsRise);
-			deviceUser.setCreateTime(CommonUtils.stringToDatetime(createTime));
-			
-			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			models.put("result", "error");
-		}
-
-		return models;
-	}
-	
-	@ResponseBody
-	@RequestMapping(value = "/json/getUserPortfolio.do")
-	public Map getUserPortfolio(String deviceId, String userPortfolioId, String serviceTicket) {
-		
-		Map<String, Object> models = new HashMap<String, Object>();
-		
-		return models;
-	}
-
-	@ResponseBody
-	@RequestMapping(value = "/json/saveUserPortfolio.do")
-	public Map saveUserPortfolio(String deviceId, String userPortfolioId, String userId, String portfolioId, 
-			String createTime, String serviceTicket) {
-		
-		log.info("Getting /json/saveUserPortfolio.do...");
-		Map<String, Object> models = new HashMap<String, Object>();
-		
-		try {
-			DeviceUserPortfolio deviceUserPortfolio = new DeviceUserPortfolio();
-			deviceUserPortfolio.setDeviceId(deviceId);
-			deviceUserPortfolio.setUserPortfolioId(Long.parseLong(userPortfolioId));
-			deviceUserPortfolio.setUserId(Long.parseLong(userId));
-			deviceUserPortfolio.setPortfolioId(Long.parseLong(portfolioId));
-			deviceUserPortfolio.setCreateTime(CommonUtils.stringToDatetime(createTime));
-			
-			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			models.put("result", "error");
-		}
-
-		return models;
-	}
 	
 
 }

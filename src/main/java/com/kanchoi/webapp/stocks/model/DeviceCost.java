@@ -23,9 +23,6 @@ public class DeviceCost implements java.io.Serializable
 	@Column(name = "device_id", nullable = false, length = 50)
 	private String deviceId;
 	
-	@Column(name = "cost_id")
-	private Long costId;
-	
 	@Column(name = "tran_cost")
 	private Double tranCost;
 	
@@ -41,19 +38,12 @@ public class DeviceCost implements java.io.Serializable
 	public DeviceCost() {
 	}
 
-	public DeviceCost(String deviceId, Long costId) {
+	public DeviceCost(String deviceId, Double tranCost, Double tax, Double commission, Double minChar) {
 		this.deviceId = deviceId;
-		this.costId = costId;
-	}
-
-	public DeviceCost(String deviceId, Long costId, Double tranCost, Double tax, Double commission, Double minChar) {
-		this.deviceId = deviceId;
-		this.costId = costId;
 		this.tranCost = tranCost;
 		this.tax = tax;
 		this.commission = commission;
 		this.minChar = minChar;
-		
 	}
 
 	public Long getId() {
@@ -70,14 +60,6 @@ public class DeviceCost implements java.io.Serializable
 
 	public void setDeviceId(String deviceId) {
 		this.deviceId = deviceId;
-	}
-
-	public Long getCostId() {
-		return this.costId;
-	}
-
-	public void setCostId(Long costId) {
-		this.costId = costId;
 	}
 
 	public Double getTranCost() {

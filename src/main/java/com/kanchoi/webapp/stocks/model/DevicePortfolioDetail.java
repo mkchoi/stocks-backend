@@ -20,32 +20,47 @@ public class DevicePortfolioDetail implements java.io.Serializable
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
 	private Long id;
+	
+	@Column(name = "device_id", nullable = false, length = 50)
 	private String deviceId;
-	private Long portfolioDetailId;
+	
+	@Column(name = "sequence")
 	private Long sequence;
+	
+	@Column(name = "stock_sym", unique = false, nullable = true, length = 10)
 	private String stockSym;
+	
+	@Column(name = "stock_name", unique = false, nullable = true, length = 50)
 	private String stockName;
+	
+	@Column(name = "market_code", unique = false, nullable = true, length = 2)
 	private String marketCode;
+	
+	@Column(name = "action", unique = false, nullable = true, length = 5)
 	private String action;
+	
+	@Column(name = "action_price")
 	private Double actionPrice;
+	
+	@Column(name = "action_qty")
 	private Long actionQty;
+	
+	@Column(name = "action_time")
 	private Date actionTime;
+	
+	@Column(name = "trading_fee")
 	private Double tradingFee;
+	
+	@Column(name = "portfolio_id")
 	private Long portfolioId;
 
 	public DevicePortfolioDetail() {
 	}
 
-	public DevicePortfolioDetail(String deviceId, Long portfolioDetailId) {
-		this.deviceId = deviceId;
-		this.portfolioDetailId = portfolioDetailId;
-	}
-
-	public DevicePortfolioDetail(String deviceId, Long portfolioDetailId, Long sequence, String stockSym, String stockName, 
+	public DevicePortfolioDetail(String deviceId, Long sequence, String stockSym, String stockName, 
 			String marketCode, String action, Double actionPrice, Long actionQty, Date actionTime, Double tradingFee, 
 			Long portfolioId) {
 		this.deviceId = deviceId;
-		this.portfolioDetailId = portfolioDetailId;
 		this.sequence = sequence;
 		this.stockSym = stockSym;
 		this.stockName = stockName;
@@ -67,7 +82,6 @@ public class DevicePortfolioDetail implements java.io.Serializable
 		this.id = id;
 	}
 
-	@Column(name = "device_id", nullable = false, length = 50)
 	public String getDeviceId() {
 		return this.deviceId;
 	}
@@ -76,16 +90,6 @@ public class DevicePortfolioDetail implements java.io.Serializable
 		this.deviceId = deviceId;
 	}
 
-	@Column(name = "portfolio_detail_id")
-	public Long getPortfolioDetailId() {
-		return this.portfolioDetailId;
-	}
-
-	public void setPortfolioDetailId(Long portfolioDetailId) {
-		this.portfolioDetailId = portfolioDetailId;
-	}
-
-	@Column(name = "sequence")
 	public Long getSequence() {
 		return sequence;
 	}
@@ -94,7 +98,6 @@ public class DevicePortfolioDetail implements java.io.Serializable
 		this.sequence = sequence;
 	}
 
-	@Column(name = "stock_sym", unique = false, nullable = true, length = 10)
 	public String getStockSym() {
 		return this.stockSym;
 	}
@@ -103,7 +106,6 @@ public class DevicePortfolioDetail implements java.io.Serializable
 		this.stockSym = stockSym;
 	}
 
-	@Column(name = "stock_name", unique = false, nullable = true, length = 50)
 	public String getStockName() {
 		return stockName;
 	}
@@ -111,8 +113,7 @@ public class DevicePortfolioDetail implements java.io.Serializable
 	public void setStockName(String stockName) {
 		this.stockName = stockName;
 	}
-
-	@Column(name = "market_code", unique = false, nullable = true, length = 2)
+	
 	public String getMarketCode() {
 		return marketCode;
 	}
@@ -121,7 +122,6 @@ public class DevicePortfolioDetail implements java.io.Serializable
 		this.marketCode = marketCode;
 	}
 
-	@Column(name = "action", unique = false, nullable = true, length = 5)
 	public String getAction() {
 		return action;
 	}
@@ -130,7 +130,6 @@ public class DevicePortfolioDetail implements java.io.Serializable
 		this.action = action;
 	}
 
-	@Column(name = "action_price")
 	public Double getActionPrice() {
 		return actionPrice;
 	}
@@ -139,7 +138,6 @@ public class DevicePortfolioDetail implements java.io.Serializable
 		this.actionPrice = actionPrice;
 	}
 
-	@Column(name = "action_qty")
 	public Long getActionQty() {
 		return actionQty;
 	}
@@ -148,7 +146,6 @@ public class DevicePortfolioDetail implements java.io.Serializable
 		this.actionQty = actionQty;
 	}
 
-	@Column(name = "action_time")
 	public Date getActionTime() {
 		return actionTime;
 	}
@@ -156,8 +153,7 @@ public class DevicePortfolioDetail implements java.io.Serializable
 	public void setActionTime(Date actionTime) {
 		this.actionTime = actionTime;
 	}
-
-	@Column(name = "trading_fee")
+	
 	public Double getTradingFee() {
 		return tradingFee;
 	}
@@ -165,8 +161,7 @@ public class DevicePortfolioDetail implements java.io.Serializable
 	public void setTradingFee(Double tradingFee) {
 		this.tradingFee = tradingFee;
 	}
-
-	@Column(name = "portfolio_id")
+	
 	public Long getPortfolioId() {
 		return portfolioId;
 	}

@@ -24,9 +24,6 @@ public class DevicePortfolio implements java.io.Serializable
 	@Column(name = "device_id", nullable = false, length = 50)
 	private String deviceId;
 	
-	@Column(name = "portfolio_id")
-	private Long portfolioId;
-	
 	@Column(name = "name", unique = false, nullable = true, length = 100)
 	private String name;
 	
@@ -39,14 +36,8 @@ public class DevicePortfolio implements java.io.Serializable
 	public DevicePortfolio() {
 	}
 
-	public DevicePortfolio(String deviceId, Long portfolioId) {
+	public DevicePortfolio(String deviceId, String name, String share, Date createTime) {
 		this.deviceId = deviceId;
-		this.portfolioId = portfolioId;
-	}
-
-	public DevicePortfolio(String deviceId, Long portfolioId, String name, String share, Date createTime) {
-		this.deviceId = deviceId;
-		this.portfolioId = portfolioId;
 		this.name = name;
 		this.share = share;
 		this.createTime = createTime;
@@ -69,15 +60,7 @@ public class DevicePortfolio implements java.io.Serializable
 	public void setDeviceId(String deviceId) {
 		this.deviceId = deviceId;
 	}
-
-	public Long getPortfolioId() {
-		return this.portfolioId;
-	}
-
-	public void setPortfolioId(Long portfolioId) {
-		this.portfolioId = portfolioId;
-	}
-
+	
 	public String getName() {
 		return this.name;
 	}

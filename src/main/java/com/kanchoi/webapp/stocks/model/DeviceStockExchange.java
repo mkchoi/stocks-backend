@@ -22,9 +22,6 @@ public class DeviceStockExchange implements java.io.Serializable
 	@Column(name = "device_id", nullable = false, length = 50)
 	private String deviceId;
 	
-	@Column(name = "stock_exchange_id")
-	private Long stockExchangeId;
-	
 	@Column(name = "market", unique = false, nullable = true, length = 20)
 	private String market;
 	
@@ -37,14 +34,8 @@ public class DeviceStockExchange implements java.io.Serializable
 	public DeviceStockExchange() {
 	}
 
-	public DeviceStockExchange(String deviceId, Long stockExchangeId) {
+	public DeviceStockExchange(String deviceId, String market, String area, String code) {
 		this.deviceId = deviceId;
-		this.setStockExchangeId(stockExchangeId);
-	}
-
-	public DeviceStockExchange(String deviceId, Long stockExchangeId, String market, String area, String code) {
-		this.deviceId = deviceId;
-		this.stockExchangeId = stockExchangeId;
 		this.market = market;
 		this.area = area;
 		this.code = code;
@@ -64,14 +55,6 @@ public class DeviceStockExchange implements java.io.Serializable
 
 	public void setDeviceId(String deviceId) {
 		this.deviceId = deviceId;
-	}
-
-	public Long getStockExchangeId() {
-		return stockExchangeId;
-	}
-
-	public void setStockExchangeId(Long stockExchangeId) {
-		this.stockExchangeId = stockExchangeId;
 	}
 
 	public String getMarket() {

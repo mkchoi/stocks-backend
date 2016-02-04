@@ -24,9 +24,6 @@ public class DeviceUser implements java.io.Serializable
 	@Column(name = "device_id", nullable = false, length = 50)
 	private String deviceId;
 	
-	@Column(name = "user_id")
-	private Long userId;
-	
 	@Column(name = "name", unique = false, nullable = true, length = 50)
 	private String name;
 	
@@ -54,15 +51,9 @@ public class DeviceUser implements java.io.Serializable
 	public DeviceUser() {
 	}
 
-	public DeviceUser(String deviceId, Long userId) {
-		this.deviceId = deviceId;
-		this.userId = userId;
-	}
-
-	public DeviceUser(String deviceId, Long userId, String name, byte[] photo, String type, String share, 
+	public DeviceUser(String deviceId, String name, byte[] photo, String type, String share, 
 			String addTradingFee, String greenAsRise, Date createTime) {
 		this.deviceId = deviceId;
-		this.userId = userId;
 		this.name = name;
 		this.photo = photo;
 		this.type = type;
@@ -86,14 +77,6 @@ public class DeviceUser implements java.io.Serializable
 
 	public void setDeviceId(String deviceId) {
 		this.deviceId = deviceId;
-	}
-
-	public Long getUserId() {
-		return this.userId;
-	}
-
-	public void setUserId(Long userId) {
-		this.userId = userId;
 	}
 
 	public String getName() {

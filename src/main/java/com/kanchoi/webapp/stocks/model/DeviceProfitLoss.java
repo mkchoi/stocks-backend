@@ -24,9 +24,6 @@ public class DeviceProfitLoss implements java.io.Serializable
 	@Column(name = "device_id", nullable = false, length = 50)
 	private String deviceId;
 	
-	@Column(name = "profit_loss_id")
-	private Long profitLossId;
-	
 	@Column(name = "user_id")
 	private Long userId;
 	
@@ -45,14 +42,8 @@ public class DeviceProfitLoss implements java.io.Serializable
 	public DeviceProfitLoss() {
 	}
 
-	public DeviceProfitLoss(String deviceId, Long profitLossId) {
+	public DeviceProfitLoss(String deviceId, Long userId, Long portfolioId, Double amount, String status, Date updateTime) {
 		this.deviceId = deviceId;
-		this.profitLossId = profitLossId;
-	}
-
-	public DeviceProfitLoss(String deviceId, Long profitLossId, Long userId, Long portfolioId, Double amount, String status, Date updateTime) {
-		this.deviceId = deviceId;
-		this.profitLossId = profitLossId;
 		this.userId = userId;
 		this.portfolioId = portfolioId;
 		this.amount = amount;
@@ -75,14 +66,6 @@ public class DeviceProfitLoss implements java.io.Serializable
 
 	public void setDeviceId(String deviceId) {
 		this.deviceId = deviceId;
-	}
-
-	public Long getProfitLossId() {
-		return this.profitLossId;
-	}
-
-	public void setProfitLossId(Long profitLossId) {
-		this.profitLossId = profitLossId;
 	}
 
 	public Long getUserId() {
