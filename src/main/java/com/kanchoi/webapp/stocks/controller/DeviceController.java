@@ -22,10 +22,10 @@ public class DeviceController {
 		return "device/notice";
 	}
 	
-	@RequestMapping(value = "/statistics")
+	@RequestMapping(value = "/explore")
 	public String showStatisticsPage(Map<String, Object> model,
 			@RequestParam(value="lang", required = false) String lang) {
-		return "device/statistics";
+		return "device/explore";
 	}
 	
 	@RequestMapping(value = "/ranking")
