@@ -6,6 +6,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/device")
@@ -16,12 +17,20 @@ public class DeviceController {
 	public DeviceController() {}
 
 	@RequestMapping(value = "/notice")
-	public String showNoticePage(Map<String, Object> model) {
+	public String showNoticePage(Map<String, Object> model,
+			@RequestParam(value="lang", required = false) String lang) {
 		return "device/notice";
 	}
 	
+	@RequestMapping(value = "/statistics")
+	public String showStatisticsPage(Map<String, Object> model,
+			@RequestParam(value="lang", required = false) String lang) {
+		return "device/statistics";
+	}
+	
 	@RequestMapping(value = "/ranking")
-	public String showRankingPage(Map<String, Object> model) {
+	public String showRankingPage(Map<String, Object> model,
+			@RequestParam(value="lang", required = false) String lang) {
 		return "device/ranking";
 	}
 
